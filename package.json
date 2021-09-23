@@ -1,0 +1,17 @@
+{
+  "name": "plugin-station-selector",
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "flex-plugin pre-script-check"
+  },
+  "dependencies": {
+    "flex-plugin-scripts": "4.9.1-beta.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-phone-input-2": "^2.14.0"
+  },
+  "devDependencies": {
+    "@twilio/flex-ui": "^1",
+    "react-test-renderer": "16.5.2"
+  }
+}
