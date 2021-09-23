@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { VERSION } from '@twilio/flex-ui';
-import * as Flex from '@twilio/flex-ui';
-
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
-
 import Drawer from '@material-ui/core/Drawer';
 import AgentSettingsComponent from './settingsbutton/AgentSettingsComponent';
 
 class MainHeaderMenuButton extends Component {
   constructor(props) {
     super(props);
-    this.init();
     this.state = {
       showMenu: false,
       width: '750px',
@@ -21,23 +16,11 @@ class MainHeaderMenuButton extends Component {
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
 
-  init() {}
-
-  componentWillMount(props) {}
-
   //  handler to show the contact directory
-  handleClick = (event) => {
-    console.log(event.currentTarget);
-    //   this.setState({ anchorEl: event.currentTarget });
+  handleClick = (_event) => {
+    //console.log(event.currentTarget);
     this.setState({ showMenu: true });
   };
-
-  //  handler to close the contact directory
-  //   handleClose() {
-  //     //this.setState({ showMenu: false });
-  //     //this.props.showContactDirectory(false);
-  //     this.setState({ anchorEl: null });
-  //   }
 
   toggleDrawer() {
     this.setState({ showMenu: false });
@@ -64,7 +47,6 @@ class MainHeaderMenuButton extends Component {
         </Drawer>
       </div>
     );
-
     return layout;
   }
 }

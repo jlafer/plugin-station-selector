@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { VERSION } from '@twilio/flex-ui';
 import * as Flex from '@twilio/flex-ui';
 
 import PstnAddressHelpText from './helper/PstnStationHelper';
@@ -80,9 +79,8 @@ class StationSelectorComponent extends Component {
   }
 
   // initialize component state based on worker attributes
-  componentDidMount(props) {
+  componentDidMount(_props) {
     // get current worker attributes
-    let workerAttributes = this.props.manager.workerClient.attributes;
     let pluginPreferences = this.getPreferences(
       this.props.manager.workerClient.attributes
     );
@@ -101,7 +99,7 @@ class StationSelectorComponent extends Component {
     if (pluginPreferences.length == 0) {
       // initialize component state w/ defaults
       this.setStationSelectorState(defaultStationConfig);
-      // update worker properties
+    // update worker properties
     } else {
       // find array index for plugin config props
       const index = pluginPreferences.findIndex(
@@ -111,10 +109,6 @@ class StationSelectorComponent extends Component {
         case -1:
           // stationSelector config does not exist
           pluginPreferences.push(defaultStationConfig);
-          // set state / update redux
-
-          // update worker attributes
-
           break;
         default:
           let currentStationConfig = {
@@ -136,7 +130,6 @@ class StationSelectorComponent extends Component {
             },
           };
           this.setStationSelectorState(currentStationConfig);
-
           break;
       }
     }
@@ -166,7 +159,6 @@ class StationSelectorComponent extends Component {
         this.setState({ sipDisabled: false });
         break;
     }
-
     this.setState({ radioSelected: event.target.value });
   }
 
@@ -189,8 +181,9 @@ class StationSelectorComponent extends Component {
     this.setState({ sipAddress: e.target.value });
   };
 
-  //  handler to mange updates to station settings
+  //  handler to manage updates to station settings
   async btnSaveUpdate() {
+    const manager = Flex.Manager.getInstance();
     let workerSid = manager.workerClient.sid;
     let workerAttributes = manager.workerClient.attributes;
     let pluginConfig = {

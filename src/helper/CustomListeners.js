@@ -9,11 +9,8 @@ const hangupNonWebRtcCall = async (task) => {
   
   const { callSid: participantCallSid } = workerParticipant;
 
-
   let token = manager.user.token;
   console.log('========= HANGUP ==========')
-  console.log(token);
-
   await ConferenceService.removeParticipant(token, conferenceSid, participantCallSid);
 };
 

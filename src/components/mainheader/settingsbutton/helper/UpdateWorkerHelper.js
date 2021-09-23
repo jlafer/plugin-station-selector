@@ -1,15 +1,9 @@
-// helper functions for InQueueVoicmailComponent
-//
-
-//  function to FETCH the voicemail transcription text
-
 export async function UpdateWorkerAttributes(
   token,
   workerSid,
   workerAttributes,
   pluginConfig
 ) {
-  // POST to transfer task:
   async function updateWorkerAttributes(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -17,8 +11,6 @@ export async function UpdateWorkerAttributes(
       headers: {
         'Content-Type': 'application/json',
       },
-      // redirect: "follow", // manual, *follow, error
-      // referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
     return await response.json(); // parses JSON response into native JavaScript objects
@@ -45,21 +37,13 @@ export async function UpdateWorkerAttributes(
     });
 }
 
-// helper functions for InQueueVoicmailComponent
-//
-
-//  function to FETCH the voicemail transcription text
 export function GetWorkerAttributes(manager, workerSid, transcriptSid) {
-  // POST to transfer task:
   async function fetchWorkerAttributes(url = '', data = {}) {
-    // Default options are marked with *
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
       },
-      // redirect: "follow", // manual, *follow, error
-      // referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
     return await response.json(); // parses JSON response into native JavaScript objects
@@ -74,6 +58,6 @@ export function GetWorkerAttributes(manager, workerSid, transcriptSid) {
       return data;
     })
     .catch((error) => {
-      console.log('fetchWorkerAttributes web service error');
+      console.log('fetchWorkerAttributes web service error', error);
     });
 }

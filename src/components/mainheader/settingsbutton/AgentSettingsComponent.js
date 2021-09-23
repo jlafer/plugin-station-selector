@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { VERSION } from '@twilio/flex-ui';
 import * as Flex from '@twilio/flex-ui';
 
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -39,7 +38,6 @@ class AgentSettingsComponent extends Component {
 
   render() {
     let manager = Flex.Manager.getInstance();
-    let clientName = manager.workerClient.name;
     let layout = (
       <div style={styles.wrapper}>
         <div style={styles.content}>
@@ -73,7 +71,6 @@ class AgentSettingsComponent extends Component {
         </div>
       </div>
     );
-
     return layout;
   }
 }

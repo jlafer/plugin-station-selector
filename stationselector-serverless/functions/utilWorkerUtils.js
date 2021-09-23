@@ -29,9 +29,6 @@ async function getContextEventElements(context, event) {
 //  return  { isValid: true/false, data: tokenResponse }
 //
 async function validateToken(context, response, token) {
-  //    validate Token
-  let authResult = {};
-  //token = '1234';
 
   //  Validate the Token using IAM API
   const tokenValidationApi = `https://iam.twilio.com/v1/Accounts/${context.ACCOUNT_SID}/Tokens/validate`;
@@ -50,6 +47,7 @@ async function validateToken(context, response, token) {
   //
   // format the response as JSON
   let tokenResponse = await fetchResponse.json();
+  let authResult = {};
   // REJECT request if validation fails (false)
   if (!tokenResponse.valid) {
     authResult = {
@@ -117,12 +115,10 @@ exports.handler = async function (context, event, callback) {
     case 'empty':
       response.setBody(errorResponse);
       return callback(null, response);
-      break;
     case 'no_token':
       response.setBody(errorResponse);
       response.setStatusCode(403);
       return callback(null, response);
-      break;
     default:
       break;
   }
@@ -141,7 +137,6 @@ exports.handler = async function (context, event, callback) {
   //
   if (debug) console.log('===========success============');
   const client = context.getTwilioClient();
-  // response.setBody(authResult);
 
   //  handler to update worker attributes given the config of the station selection
   async function updateWorker(workerSid, attributes, pluginConfig) {
@@ -169,11 +164,12 @@ exports.handler = async function (context, event, callback) {
         plugin_preferences[index] = pluginConfig;
         break;
     }
-    if(debug){console.log(plugin_preferences)};
+    if(debug) {
+      console.log(plugin_preferences)
+    };
 
     //  merge updated plugin_preferences into the worker attributes
     attributes = { ...attributes, plugin_preferences };
-
 
     if(index== -1 ) {index = 0}
 
@@ -225,7 +221,5 @@ exports.handler = async function (context, event, callback) {
       );
       response.setBody(JSON.stringify(result));
       return callback(null, response);
-
-      break;
   }
 };

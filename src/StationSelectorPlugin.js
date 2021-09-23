@@ -1,11 +1,7 @@
 import React from 'react';
-import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
-import reducers, { namespace } from './states';
-
 import { pluginMainHeaderHelper } from './helper/MainHeaderHelper';
-
 import './helper/CustomListeners';
 import './helper/FlexWorkerState';
 import FlexWorkerState from './helper/FlexWorkerState';
@@ -26,11 +22,6 @@ export default class StationSelectorPlugin extends FlexPlugin {
    * @param manager { import('@twilio/flex-ui').Manager }
    */
   init(flex, manager) {
-    window.flex = flex;
-    window.manager = manager;
-
-    this.registerReducers(manager);
-
 
     // handle component state based on worker contact_uri
     //
@@ -50,25 +41,7 @@ export default class StationSelectorPlugin extends FlexPlugin {
       }
     );
 
-
     //  load the station selector setting button
     pluginMainHeaderHelper(flex, manager);
-  }
-
-  /**
-   * Registers the plugin reducers
-   *
-   * @param manager { Flex.Manager }
-   */
-  registerReducers(manager) {
-    if (!manager.store.addReducer) {
-      // eslint: disable-next-line
-      console.error(
-        `You need FlexUI > 1.9.0 to use built-in redux; you are currently on ${VERSION}`
-      );
-      return;
-    }
-
-    manager.store.addReducer(namespace, reducers);
   }
 }

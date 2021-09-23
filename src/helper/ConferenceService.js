@@ -1,8 +1,6 @@
 class ConferenceService {
     static baseServerlessUrl = `${process.env.REACT_APP_SERVERLESS_DOMAIN}`
   
-    //
-    // METHOD: removeParticipant
     static removeParticipant = async (token, conferenceSid, participantCallSid) => {
       const fetchUrl = `${this.baseServerlessUrl}/remove-conf-participant`;
       const fetchBody = {
@@ -26,8 +24,6 @@ class ConferenceService {
       console.debug('*** Conference participant remove response:', response);
     }
   
-    //
-    // METHOD: updateParticipant
     static updateParticipant = async (token, conferenceSid, participantCallSid, updateProperties) => {
       const fetchUrl = `${this.baseServerlessUrl}/update-conf-participant`;
       const fetchBody = {
@@ -52,8 +48,6 @@ class ConferenceService {
       console.debug('*** Conference participant updated:', response);
     }
   
-    //
-    // METHOD: muteParticipant
     static muteParticipant = async (token, conferenceSid, participantCallSid) => {
       const updateProperties = {
         muted: true
@@ -61,8 +55,6 @@ class ConferenceService {
       await this.updateParticipant(token, conferenceSid, participantCallSid, updateProperties);
     }
   
-    //
-    // METHOD: unMuteParticipant
     static unMuteParticipant = async (token, conferenceSid, participantCallSid) => {
       const updateProperties = {
         muted: false

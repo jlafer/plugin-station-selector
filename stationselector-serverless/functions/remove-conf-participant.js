@@ -140,7 +140,6 @@ exports.handler = async function (context, event, callback) {
   //
   if (debug) console.log('===========success============');
   const client = context.getTwilioClient();
-  // response.setBody(authResult);
 
   const {
     conferenceSid,
@@ -159,5 +158,4 @@ exports.handler = async function (context, event, callback) {
   response.setBody(responseBody);
 
   callback(null, response);
-
 }

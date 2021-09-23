@@ -2,7 +2,6 @@
 //  helper file to simplify the main plugin code
 //
 import React from 'react';
-import * as Flex from '@twilio/flex-ui';
 
 import MainHeaderSettingsButton from '../components/mainheader/MainHeaderSettingsButton';
 
